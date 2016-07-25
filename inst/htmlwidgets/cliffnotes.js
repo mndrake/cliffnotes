@@ -103,8 +103,7 @@ var DataFrameSummary = React.createClass({
             ) : ({});
         });
 
-        return React.createElement("div", {className: "data-frame-summary", id: "data-frame-summary"},
-                React.createElement("h1", {}, "Summary"), P);
+        return React.createElement("div", {className: "data-frame-summary", id: "data-frame-summary"}, P);
     }
 });
 
