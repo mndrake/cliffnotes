@@ -1,0 +1,93 @@
+{
+    "name": "mongodb",
+    "displayName": "MongoDB",
+    "iconURL" : "lib/images/mongodb.png",
+    "iconHeight" : "33px",
+    "helpURL" :  "http://docs.exploratory.io/import/mongodb.html",
+    "function": "exploratory::queryMongoDB",
+    "rSourceFile" : "plugin.r",
+    "rPackageDependencies": ["mongolite"],
+    "hasQueryField" : true,
+    "canUseConnection" : true,
+    "timestamp": "2016-04-11T23:54:42.688Z",
+    "updatedBy": "",
+    "inputParameters": [
+      {
+        "name" : "host", 
+        "displayName":"Hostname", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "port", 
+        "displayName":"Port number", 
+        "dataType":"number", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "database", 
+        "displayName":"Database", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "collection", 
+        "displayName":"Collection", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true
+      },      
+      {
+        "name" : "username", 
+        "displayName":"Username", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      }, 
+      {
+        "name": "password", 
+        "displayName":"Password", 
+        "dataType": "password", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "query",
+        "displayName" : "Query",
+        "dataType" : "text",
+        "quoteString" : "'",
+        "defaultValue" : "{}",
+        "required" : true
+      },
+      {
+        "name" : "flatten",
+        "displayName" : "Flatten",
+        "dataType" : "boolean",
+        "defaultValue" : true,
+        "required" : true 
+      },
+      {
+        "name": "limit", 
+        "displayName":"Number of Rows", 
+        "dataType": "select", 
+        "itemDataType" : "number",
+        "options" : [
+          {"value" : 100, "label" : 100}, 
+          {"value" : 1000, "label" : 1000},
+          {"value" : 10000, "label" : 10000}, 
+          {"value" : 100000, "label" : 100000}, 
+          {"value" : 0, "label":"All"}
+        ],
+        "defaultValue" : 100000,
+        "required" : true 
+      }
+    ]
+}

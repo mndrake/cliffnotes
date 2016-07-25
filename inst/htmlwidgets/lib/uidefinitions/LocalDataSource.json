@@ -1,0 +1,45 @@
+[
+  {
+    "name": "local_csv",
+    "displayName" : "Text File (CSV, delimited)",
+    "iconURL": "lib/images/csv.png",
+    "fileAccepts" : [".csv", ".text", ".txt", ".tsv", ".tab"]
+  },
+  {
+    "name": "xls",
+    "displayName" : "Excel File",
+    "iconURL": "lib/images/excel.png",
+    "fileAccepts" : [".xls", ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.ms-excel"]
+  },
+  {
+    "name": "complexjson",
+    "displayName" : "JSON File",
+    "iconURL": "lib/images/json.png",
+    "fileAccepts" : ["application/json","application/javascript",".json"],
+    "_COMMENT" : "For windows, you need to set .json explicitly"
+  },
+  {
+    "name": "log",
+    "displayName" : "Log File",
+    "iconURL": "lib/images/log.png",
+    "fileAccepts" : [".log",".txt"]
+  },
+  {
+    "name": "stats",
+    "displayName" : "Stats File (SPSS, SAS, STATA)",
+    "iconURL": "lib/images/stats.png",
+    "fileAccepts" : [".sas7bdat", ".sas7bcat", ".sav", ".dta"]
+  },
+  {
+    "name": "r",
+    "displayName" : "R File (RDATA, RDS)",
+    "iconURL": "lib/images/r.png",
+    "fileAccepts" : [".rdata", ".rda", ".rds"]
+  },
+  {
+    "name": "exploratory",
+    "displayName" : "Exploratory (.edf)",
+    "iconText": "E",
+    "fileAccepts" : [".edf"]
+  }
+]

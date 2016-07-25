@@ -1,0 +1,13 @@
+{
+    "name": "remotejson",
+    "displayName": "JSON REST API",
+    "iconURL" : "lib/images/rest.png",
+    "helpURL" :  "http://docs.exploratory.io/import/github.html",
+    "function": "",
+    "rSourceFile" : "plugin.r",
+    "rPackageDependencies": [],
+    "timestamp": "2016-04-11T23:54:42.688Z",
+    "updatedBy": "",
+    "inputParameters": [],
+    "_dialogType": "remotejson"
+}

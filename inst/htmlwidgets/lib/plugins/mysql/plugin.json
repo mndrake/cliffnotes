@@ -1,0 +1,79 @@
+{
+    "name": "mysql",
+    "displayName": "MySQL",
+    "iconURL" : "lib/images/mysql.png",
+    "helpURL" :  "http://docs.exploratory.io/import/mysql.html",
+    "function": "exploratory::queryMySQL",
+    "rSourceFile" : "plugin.r",
+    "rPackageDependencies": ["RMySQL"],
+    "hasQueryField" : true,
+    "canUseConnection" : true,
+    "timestamp": "2016-04-11T23:54:42.688Z",
+    "updatedBy": "",
+    "inputParameters": [
+      {
+        "name" : "host", 
+        "displayName":"Hostname", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "port", 
+        "displayName":"Port number", 
+        "dataType":"number", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "database", 
+        "displayName":"Database",
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name" : "username", 
+        "displayName":"Username", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      }, 
+      {
+        "name": "password", 
+        "displayName":"Password", 
+        "dataType": "password", 
+        "defaultValue" : "",
+        "required" : true,
+        "connectionItem" : true
+      },
+      {
+        "name": "numOfRows", 
+        "displayName":"Number of Rows", 
+        "dataType": "select",
+        "itemDataType" : "number",
+        "options" : [
+          {"value" : 100, "label" : 100}, 
+          {"value" : 1000, "label" : 1000},
+          {"value" : 10000, "label" : 10000}, 
+          {"value" : 100000, "label" : 100000}, 
+          {"value" : -1, "label":"all"}
+        ],
+        "defaultValue" : 100000,
+        "required" : true 
+      },
+      {
+        "name" : "query",
+        "displayName" : "SQL Query",
+        "dataType" : "text",
+        "quoteString" : "'",
+        "defaultValue" : "",
+        "colSpan" : 10,
+        "required" : true
+      }
+  ]
+}

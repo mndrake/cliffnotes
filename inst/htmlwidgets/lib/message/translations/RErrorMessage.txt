@@ -1,0 +1,34 @@
+[ 
+ {
+   "key" : "DATA.IMPORT.WRONG.HEADER",
+   "message" : "It looks like this file does not have a header. Please set \"First Row as Header\" as \"No\" and hit Preview Button again."
+ },
+ {
+   "key" : "DATA.IMPORT.WRONG.SEPARATOR",
+   "message": "It looks like separator is not correct. Please re-select correct separator and hit Preview Button again."
+ },
+ {
+   "key" : "IS.ILLEGAL.ESCAPE.SEQUENCE",
+   "message": "{0} is an illegal escape sequence in R."
+ },
+ {
+   "key" : "RPAR.WITHOUT.MATCHING.LPAR",
+   "message": "Right parenthesis ')' without matching left parenthesis '(' is found."
+ },
+ {
+   "key" : "LPAR.WITHOUT.MATCHING.RPAR",
+   "message": "Left parenthesis '(' without matching right parenthesis ')' is found. Maybe ')' at the end is missing?"
+ },
+ {
+   "key" : "R.RESATARTED.INVALID.TRANSFORM.ERROR",
+   "message": "It looks you had a problem with this step in the last session. You might want to review the step before you run."
+ },
+ {
+   "key" : "DATA.IMPORT.WRONG.ENCODING",
+   "message": "It looks like file encoding is not correct. Please set appropriate file encoding and try again."
+ },
+ {
+   "key" : "OBJECT.NAME.VALIDATION.ERROR",
+   "message" : "Only alphabet, numeric, '_' (underscore), and '-' (dash or minus) can be used for the name."
+ }
+]

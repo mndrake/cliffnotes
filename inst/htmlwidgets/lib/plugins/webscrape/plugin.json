@@ -1,0 +1,13 @@
+{
+    "name": "webscrape",
+    "displayName": "Scrape Web Page",
+    "iconURL" : "lib/images/html.png",
+    "helpURL" :  "http://docs.exploratory.io/import/web-scraping.html",
+    "function": "",
+    "rSourceFile" : "plugin.r",
+    "rPackageDependencies": [],
+    "timestamp": "2016-04-11T23:54:42.688Z",
+    "updatedBy": "",
+    "inputParameters": [],
+    "_dialogType": "webscrape"
+}

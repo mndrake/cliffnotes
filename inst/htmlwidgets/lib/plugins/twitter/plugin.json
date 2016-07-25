@@ -1,0 +1,55 @@
+{
+    "name": "twitter",
+    "displayName": "Twitter Search",
+    "iconURL" : "lib/images/twitter.png",
+    "iconWidth" : "32px",
+    "iconHeight" : "32px",
+    "helpURL" : "http://docs.exploratory.io/import/twitter.html",
+    "function": "exploratory::getTwitter",
+    "rSourceFile" : "plugin.r",
+    "rPackageDependencies": ["twitteR"],
+    "timestamp": "2016-05-04T23:54:42.688Z",
+    "updatedBy": "",
+    "allowRefreshOAuthToken": true,
+    "forceRefreshOAuthTokenFunction" : "exploratory::refreshTwitterToken",
+    "forceRefreshOAuthTokenFunctionArgument" : "tokenFileId",
+    "inputParameters": [
+      {
+        "name": "n", 
+        "displayName":"Max # of tweets", 
+        "dataType": "number", 
+        "defaultValue" : 200,
+        "required" : false
+      },
+      {
+        "name": "lang",
+        "displayName":"Language",
+        "dataType": "text",
+        "defaultValue" : "",
+        "placeholder" : "e.g. en, fr, ja, etc",
+        "required" : false
+      },
+      {
+        "name": "lastNDays", 
+        "displayName":"Last N Days", 
+        "dataType": "number", 
+        "defaultValue" : 10,
+        "required" : true
+      },
+      {
+        "name": "searchString", 
+        "displayName":"Search Text", 
+        "dataType": "text", 
+        "defaultValue" : "",
+        "required" : true
+      },
+      {
+        "name": "tokenFileId",
+        "displayName":"",
+        "dataType": "oauthTokenFileId",
+        "generateUniqueId" : true,
+        "defaultValue" : "",
+        "required" : true
+      }
+  ]
+}

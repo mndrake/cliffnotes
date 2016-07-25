@@ -1,0 +1,3519 @@
+[
+  {
+    "type": "character",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "command": "filter(```this_column``` == ```cursor```)"
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "command": "filter(```this_column``` != ```cursor```)"
+          },
+          {
+            "title": "%in%",
+            "label": "matches any value in the list",
+            "command": "filter(```this_column``` %in% c(```cursor```))"
+          },
+          {
+            "title": "starts with",
+            "command": "filter(str_detect(```this_column```, \"^```cursor```\"))"
+          },
+          {
+            "title": "ends with",
+            "command": "filter(str_detect(```this_column```, \"```cursor```$\"))"
+          },
+          {
+            "title": "contains",
+            "command": "filter(str_detect(```this_column```, \"```cursor```\"))"
+          },
+          {
+            "title": "not contain",
+            "command": "filter(!str_detect(```this_column```, \"```cursor```\"))"
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n())",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Convert to...",
+        "menu": [
+          {
+            "title": "Convert to Number",
+            "command": "mutate(```this_column``` = extract_numeric(```this_column``````cursor```))",
+            "_COMMENT": "parse_number() strips minus. So we are using extract_numeric instead."
+          },
+          {
+            "title": "Convert to Time",
+            "command": "mutate(```this_column``` = parse_time(```this_column``````cursor```))"
+          },
+          {
+            "title": "Convert to Date/Time",
+            "menu": [
+              {
+                "title": "Year, Month, Day",
+                "command": "mutate(```this_column``` = ymd(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Month, Day, Hour",
+                "command": "mutate(```this_column``` = ymd_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Month, Day, Hour, Minute",
+                "command": "mutate(```this_column``` = ymd_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Month, Day, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = ymd_hms(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year",
+                "command": "mutate(```this_column``` = dmy(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year, Hour",
+                "command": "mutate(```this_column``` = dmy_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year, Hour, Minute",
+                "command": "mutate(```this_column``` = dmy_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = dmy_hms(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year",
+                "command": "mutate(```this_column``` = mdy(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year, Hour",
+                "command": "mutate(```this_column``` = mdy_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year, Hour, Minute",
+                "command": "mutate(```this_column``` = mdy_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = mdy_hms(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month",
+                "command": "mutate(```this_column``` = ydm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month, Hour",
+                "command": "mutate(```this_column``` = ydm_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month, Hour, Minute",
+                "command": "mutate(```this_column``` = ydm_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = ydm_hms(```this_column``````cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "Convert to Logical",
+            "command": "mutate(```this_column``` = parse_logical(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "title": "Work with Text function",
+        "menu": [
+          {
+            "title": "Clean Text",
+            "command": "mutate(```this_column``` = str_clean(```this_column``````cursor```))"
+          },
+          {
+            "title": "Count Text Matches",
+            "command": "mutate(```new_column``` = str_count(```this_column```, \"```cursor```\"))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Detect Text",
+            "command": "mutate(```new_column``` = str_detect(```this_column```, \"```cursor```\"))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Drop stopwords",
+            "command": "filter(!is_stopword(```this_column``````cursor```))"
+          },
+          {
+            "title": "Duplicate Text N times",
+            "command": "mutate(```new_column``` = str_dup(```this_column```, ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Extract Text",
+            "command": "mutate(```new_column``` = str_extract(```this_column```, \"```cursor```\"))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Extract Nth Word",
+            "command": "mutate(```new_column``` = word(```this_column```, ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Get Sentiment of Sentences",
+            "command": "mutate(```new_column``` = get_sentiment(```this_column``````cursor```))",
+            "suffix": "_sentiment"
+          },
+          {
+            "title": "Get Sentiment of Words",
+            "command": "mutate(```new_column``` = word_to_sentiment(```this_column``````cursor```))",
+            "suffix": "_sentiment"
+          },
+          {
+            "title": "Keep only alphabet",
+            "command": "filter(is_alphabet(```this_column``````cursor```))"
+          },
+          {
+            "title": "Remove (Trim) Spaces",
+            "command": "mutate(```new_column``` = str_trim(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Replace",
+            "command": "mutate(```new_column``` = str_replace(```this_column```, ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Replace All",
+            "command": "mutate(```new_column``` = str_replace_all(```this_column```, ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Replace NAs",
+            "command": "mutate(```new_column``` = str_replace_na(```this_column```, ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Split Text",
+            "command": "mutate(```new_column``` = str_split(```this_column```, \"```cursor```,\"))",
+            "suffix": "_new",
+            "selectLength": 1
+          },
+          {
+            "title": "Stem Words",
+            "command": "mutate(```new_column``` = stem_word(```this_column``````cursor```))",
+            "suffix": "_stem"
+          },
+          {
+            "title": "Text Length",
+            "command": "mutate(```new_column``` = str_length(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Text Padding",
+            "command": "mutate(```new_column``` = str_pad(```this_column```, ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "To Lower Case",
+            "command": "mutate(```new_column``` = str_to_lower(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "To Title Case",
+            "command": "mutate(```new_column``` = str_to_title(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "To Upper Case",
+            "command": "mutate(```new_column``` = str_to_upper(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "Tokenize",
+            "command": "do_tokenize(```this_column``````cursor```)"
+          }
+        ]
+      },
+      {
+        "title": "Work with NA/Empty",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Convert NA to..",
+            "command": "mutate(```this_column``` = coalesce(```this_column```, \"```cursor```\"))"
+          },
+          {
+            "title": "Convert ... to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, \"```cursor```\"))"
+          },
+          {
+            "title": "Drop Empty",
+            "command": "filter(!is_empty(```this_column```))"
+          },
+          {
+            "title": "Keep only Empty",
+            "command": "filter(is_empty(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Mapping data",
+        "menu": [
+          {
+            "title": "From Country Name to...",
+            "menu": [
+              {
+                "title": "ISO 2 Letters",
+                "command": "mutate(iso2c = countrycode(```this_column```, \"country.name\", \"iso2c\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Letters",
+                "command": "mutate(iso3c = countrycode(```this_column```, \"country.name\", \"iso3c\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Numbers",
+                "command": "mutate(iso3n = countrycode(```this_column```, \"country.name\", \"iso3n\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "From ISO 2 Letters to...",
+            "menu": [
+              {
+                "title": "Country Name",
+                "command": "mutate(country_name = countrycode(```this_column```, \"iso2c\", \"country.name\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Letters",
+                "command": "mutate(iso3c = countrycode(```this_column```, \"iso2c\", \"iso3c\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Numbers",
+                "command": "mutate(iso3n = countrycode(```this_column```, \"iso2c\", \"iso3n\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "From ISO 3 Letters to...",
+            "menu": [
+              {
+                "title": "Country Name",
+                "command": "mutate(country_name = countrycode(```this_column```, \"iso3c\", \"country.name\"```cursor```))"
+              },
+              {
+                "title": "ISO 2 Letters",
+                "command": "mutate(iso2c = countrycode(```this_column```, \"iso3c\", \"iso2c\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Numbers",
+                "command": "mutate(iso3n = countrycode(```this_column```, \"iso3c\", \"iso3n\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "From ISO 3 Numbers to...",
+            "menu": [
+              {
+                "title": "Country Name",
+                "command": "mutate(country_name = countrycode(```this_column```, \"iso3n\", \"country.name\"```cursor```))"
+              },
+              {
+                "title": "ISO 2 Letters",
+                "command": "mutate(iso2c = countrycode(```this_column```, \"iso3n\", \"iso2c\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Letters",
+                "command": "mutate(iso3c = countrycode(```this_column```, \"iso3n\", \"iso3c\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "From IP address to Country",
+            "command": "mutate(country_name = ip_to_country(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "numeric",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "command": "filter(```this_column``` == ```cursor```)"
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "command": "filter(```this_column``` != ```cursor```)"
+          },
+          {
+            "title": "<",
+            "label": "less than",
+            "command": "filter(```this_column``` < ```cursor```)"
+          },
+          {
+            "title": "<=",
+            "label": "less than or equal to",
+            "command": "filter(```this_column``` <= ```cursor```)"
+          },
+          {
+            "title": ">",
+            "label": "greater than",
+            "command": "filter(```this_column``` > ```cursor```)"
+          },
+          {
+            "title": ">=",
+            "label": "greater than or equal to",
+            "command": "filter(```this_column``` >= ```cursor```)"
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "sum",
+            "command": "summarize(```new_column``` = sum(```this_column```, na.rm = TRUE))",
+            "suffix": "_sum"
+          },
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "mean (average)",
+            "command": "summarize(```new_column``` = mean(```this_column```, na.rm = TRUE))",
+            "suffix": "_mean"
+          },
+          {
+            "title": "median",
+            "command": "summarize(```new_column``` = median(```this_column```, na.rm = TRUE))",
+            "suffix": "_median"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "IQR (interquartile range)",
+            "command": "summarize(```new_column``` = IQR(```this_column```, na.rm = TRUE))",
+            "suffix": "_IQR"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "mad",
+            "command": "summarize(```new_column``` = mad(```this_column```, na.rm = TRUE))",
+            "suffix": "_mad"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          },
+          {
+            "title": "sd",
+            "command": "summarize(```new_column``` = sd(```this_column```, na.rm = TRUE))",
+            "suffix": "_sd"
+          },
+          {
+            "title": "var",
+            "command": "summarize(```new_column``` = var(```this_column```, na.rm = TRUE))",
+            "suffix": "_var"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Top N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, ```this_column```)",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, ```this_column```)",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Bottom N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, desc(```this_column```))",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, desc(```this_column```))",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Convert to...",
+        "menu": [
+          {
+            "title": "Convert to Text",
+            "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+          },
+          {
+            "title": "Convert to Date/Time",
+            "menu": [
+              {
+                "title": "Year, Month, Day",
+                "command": "mutate(```this_column``` = ymd(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Month, Day, Hour",
+                "command": "mutate(```this_column``` = ymd_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Month, Day, Hour, Minute",
+                "command": "mutate(```this_column``` = ymd_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Month, Day, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = ymd_hms(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year",
+                "command": "mutate(```this_column``` = dmy(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year, Hour",
+                "command": "mutate(```this_column``` = dmy_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year, Hour, Minute",
+                "command": "mutate(```this_column``` = dmy_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Day, Month, Year, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = dmy_hms(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year",
+                "command": "mutate(```this_column``` = mdy(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year, Hour",
+                "command": "mutate(```this_column``` = mdy_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year, Hour, Minute",
+                "command": "mutate(```this_column``` = mdy_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Month, Day, Year, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = mdy_hms(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month",
+                "command": "mutate(```this_column``` = ydm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month, Hour",
+                "command": "mutate(```this_column``` = ydm_h(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month, Hour, Minute",
+                "command": "mutate(```this_column``` = ydm_hm(```this_column``````cursor```))"
+              },
+              {
+                "title": "Year, Day, Month, Hour, Minute, Second",
+                "command": "mutate(```this_column``` = ydm_hms(```this_column``````cursor```))"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Round",
+        "menu": [
+          {
+            "title": "round",
+            "menu": [
+              {
+                "title": "0 decimal places",
+                "command": "mutate(```this_column``` = round(```this_column```, digits = ```cursor```0))",
+                "selectLength": 1
+              },
+              {
+                "title": "1 decimal places",
+                "command": "mutate(```this_column``` = round(```this_column```, digits = ```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "2 decimal places",
+                "command": "mutate(```this_column``` = round(```this_column```, digits = ```cursor```2))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "floor",
+            "command": "mutate(```this_column``` = floor(```this_column``````cursor```))"
+          },
+          {
+            "title": "ceiling",
+            "command": "mutate(```this_column``` = ceiling(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "title": "Calculate with Window function",
+        "menu": [
+          {
+            "title": "cumsum",
+            "command": "mutate(```new_column``` = cumsum(```this_column``````cursor```))",
+            "suffix": "_cumsum"
+          },
+          {
+            "title": "cumall",
+            "command": "mutate(```new_column``` = cumall(```cursor```))",
+            "suffix": "_cumall"
+          },
+          {
+            "title": "cumany",
+            "command": "mutate(```new_column``` = cumall(```cursor```))",
+            "suffix": "_cumany"
+          },
+          {
+            "title": "cume_dist",
+            "command": "mutate(```new_column``` = cume_dist(```this_column``````cursor```))",
+            "suffix": "_cum_dist"
+          },
+          {
+            "title": "cummax",
+            "command": "mutate(```new_column``` = cummax(```this_column``````cursor```))",
+            "suffix": "_cummax"
+          },
+          {
+            "title": "cummean",
+            "command": "mutate(```new_column``` = cummean(```this_column``````cursor```))",
+            "suffix": "_cummean"
+          },
+          {
+            "title": "cummin",
+            "command": "mutate(```new_column``` = cummin(```this_column``````cursor```))",
+            "suffix": "_cummin"
+          },
+          {
+            "title": "cumprod",
+            "command": "mutate(```new_column``` = cumprod(```this_column``````cursor```))",
+            "suffix": "_cumprod"
+          },
+          {
+            "title": "lag",
+            "command": "mutate(```new_column``` = lag(```this_column```, n = 1```cursor```))",
+            "suffix": "_lag"
+          },
+          {
+            "title": "lead",
+            "command": "mutate(```new_column``` = lead(```this_column```, n = 1```cursor```))",
+            "suffix": "_lead"
+          },
+          {
+            "title": "min_rank",
+            "command": "mutate(```new_column``` = min_rank(```this_column``````cursor```))",
+            "suffix": "_min_rank"
+          },
+          {
+            "title": "dense_rank",
+            "command": "mutate(```new_column``` = dense_rank(```this_column``````cursor```))",
+            "suffix": "_dense_rank"
+          },
+          {
+            "title": "percent_rank",
+            "command": "mutate(```new_column``` = percent_rank(```this_column``````cursor```))",
+            "suffix": "_percent_rank"
+          },
+          {
+            "title": "ntile",
+            "command": "mutate(```new_column``` = ntile(```this_column```, n = ```cursor```4))",
+            "suffix": "_ntile",
+            "selectLength": 1
+          },
+          {
+            "title": "first",
+            "command": "mutate(```new_column``` = first(```this_column``````cursor```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "last",
+            "command": "mutate(```new_column``` = last(```this_column``````cursor```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "roll_max",
+            "command": "mutate(```new_column``` = roll_max(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_max"
+          },
+          {
+            "title": "roll_mean",
+            "command": "mutate(```new_column``` = roll_mean(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_mean"
+          },
+          {
+            "title": "roll_median",
+            "command": "mutate(```new_column``` = roll_median(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_median"
+          },
+          {
+            "title": "roll_min",
+            "command": "mutate(```new_column``` = roll_min(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_min"
+          },
+          {
+            "title": "roll_prod",
+            "command": "mutate(```new_column``` = roll_prod(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_prod"
+          },
+          {
+            "title": "roll_sd",
+            "command": "mutate(```new_column``` = roll_sd(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_sd"
+          },
+          {
+            "title": "roll_sum",
+            "command": "mutate(```new_column``` = roll_sum(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_sum"
+          },
+          {
+            "title": "roll_var",
+            "command": "mutate(```new_column``` = roll_var(```this_column```, n = ```cursor```))",
+            "suffix": "_roll_ver"
+          },
+          {
+            "title": "row_number",
+            "command": "mutate(```new_column``` = row_number(```this_column```, n = ```cursor```))",
+            "suffix": "_row_number"
+          }
+        ]
+      },
+      {
+        "title": "Calculate with Math function",
+        "menu": [
+          {
+            "title": "abs",
+            "command": "mutate(```new_column``` = abs(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "acos",
+            "command": "mutate(```new_column``` = acos(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "acosh",
+            "command": "mutate(```new_column``` = acosh(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "asin",
+            "command": "mutate(```new_column``` = asin(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "asinh",
+            "command": "mutate(```new_column``` = asinh(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "atan",
+            "command": "mutate(```new_column``` = atan(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "atan2",
+            "command": "mutate(```new_column``` = atan2(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "atanh",
+            "command": "mutate(```new_column``` = atanh(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "ceiling",
+            "command": "mutate(```new_column``` = ceiling(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "cos",
+            "command": "mutate(```new_column``` = cos(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "cosh",
+            "command": "mutate(```new_column``` = cosh(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "cospi",
+            "command": "mutate(```new_column``` = cospi(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "cut",
+            "command": "mutate(```new_column``` = cut(```this_column```, breaks = ```cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "exp",
+            "command": "mutate(```new_column``` = exp(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "floor",
+            "command": "mutate(```new_column``` = floor(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "log",
+            "command": "mutate(```new_column``` = log(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "log10",
+            "command": "mutate(```new_column``` = log10(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "log1p",
+            "command": "mutate(```new_column``` = log1p(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "log2",
+            "command": "mutate(```new_column``` = log2(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "pmax",
+            "command": "mutate(```new_column``` = pmax(```this_column```, ```cursor```, na.rm = TRUE))",
+            "suffix": "_new"
+          },
+          {
+            "title": "pmin",
+            "command": "mutate(```new_column``` = pmin(```this_column```, ```cursor```, na.rm = TRUE))",
+            "suffix": "_new"
+          },
+          {
+            "title": "scale",
+            "command": "mutate(```new_column``` = scale(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "sign",
+            "command": "mutate(```new_column``` = sign(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "signif",
+            "command": "mutate(```new_column``` = signif(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "sin",
+            "command": "mutate(```new_column``` = sin(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "sinh",
+            "command": "mutate(```new_column``` = sinh(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "sinpi",
+            "command": "mutate(```new_column``` = sinpi(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "sqrt",
+            "command": "mutate(```new_column``` = sqrt(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "tan",
+            "command": "mutate(```new_column``` = tan(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "tanh",
+            "command": "mutate(```new_column``` = tanh(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "tanpi",
+            "command": "mutate(```new_column``` = tanpi(```this_column``````cursor```))",
+            "suffix": "_new"
+          },
+          {
+            "title": "trunc",
+            "command": "mutate(```new_column``` = trunc(```this_column``````cursor```))",
+            "suffix": "_new"
+          }
+        ]
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Impute NAs",
+            "menu": [
+              {
+                "title": "mean",
+                "command": "mutate(```this_column``` = coalesce(```this_column```, mean(```this_column```, na.rm = TRUE)```cursor```))"
+              },
+              {
+                "title": "median",
+                "command": "mutate(```this_column``` = coalesce(```this_column```, median(```this_column```, na.rm = TRUE)```cursor```))"
+              },
+              {
+                "title": "Specific Value",
+                "command": "mutate(```this_column``` = coalesce(```this_column```, ```cursor```0))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "Map to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, ```cursor```0))",
+            "selectLength": 1
+          }
+        ]
+      },
+      {
+        "title": "Mapping data",
+        "menu": [
+          {
+            "title": "From ISO 3 Numbers to...",
+            "menu": [
+              {
+                "title": "Country Name",
+                "command": "mutate(country_name = countrycode(```this_column```, \"iso3n\", \"country.name\"```cursor```))"
+              },
+              {
+                "title": "ISO 2 Letters",
+                "command": "mutate(iso2c = countrycode(```this_column```, \"iso3n\", \"iso2c\"```cursor```))"
+              },
+              {
+                "title": "ISO 3 Letters",
+                "command": "mutate(iso3c = countrycode(```this_column```, \"iso3n\", \"iso3c\"```cursor```))"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Build Model",
+        "menu": [
+          {
+            "title": "Linear Regression",
+            "command": "build_lm(```this_column``` ~ ```cursor```., keep.source = FALSE)",
+            "selectLength": 1
+          },
+          {
+            "title": "K-means",
+            "command": "build_kmeans.cols(```this_column```, centers = ```cursor```3, keep.source = TRUE)",
+            "selectLength": 1
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "Date",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` == \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` == \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` == today() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` == today() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` == today() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` == today() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` != \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` != \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` != today() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` != today() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` != today() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` != today() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<",
+            "label": "less than",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` < \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` < \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` < today() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` < today() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` < today() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` < today() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<=",
+            "label": "less than or equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` <= \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` <= \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` <= today() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` <= today() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` <= today() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` <= today() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">",
+            "label": "greater than",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` > \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` > \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` > today() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` > today() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` > today() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` > today() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">=",
+            "label": "greater than or equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` >= \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` >= \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` >= today() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` >= today() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` >= today() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` >= today() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "median",
+            "command": "summarize(```new_column``` = median(```this_column```, na.rm = TRUE))",
+            "suffix": "_median"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Convert to...",
+        "menu": [
+          {
+            "title": "Convert to Number",
+            "command": "mutate(```this_column``` = decimal_date(```this_column``````cursor```))"
+          },
+          {
+            "title": "Convert to Text",
+            "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+          },
+          {
+            "title": "Convert to POSIXct",
+            "command": "mutate(```this_column``` = as.POSIXct(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "title": "Extract",
+        "menu": [
+          {
+            "title": "Year",
+            "command": "mutate(```new_column``` = year(```this_column``````cursor```))",
+            "suffix": "_year"
+          },
+          {
+            "title": "Month",
+            "command": "mutate(```new_column``` = month(```this_column``````cursor```))",
+            "suffix": "_month"
+          },
+          {
+            "title": "Week",
+            "command": "mutate(```new_column``` = week(```this_column``````cursor```))",
+            "suffix": "_week"
+          },
+          {
+            "title": "Day",
+            "command": "mutate(```new_column``` = day(```this_column``````cursor```))",
+            "suffix": "_day"
+          },
+          {
+            "title": "Hour",
+            "command": "mutate(```new_column``` = hour(```this_column``````cursor```))",
+            "suffix": "_hour"
+          },
+          {
+            "title": "Minute",
+            "command": "mutate(```new_column``` = minute(```this_column``````cursor```))",
+            "suffix": "_minute"
+          },
+          {
+            "title": "Second",
+            "command": "mutate(```new_column``` = second(```this_column``````cursor```))",
+            "suffix": "_second"
+          },
+          {
+            "title": "Day of week",
+            "command": "mutate(```new_column``` = wday(```this_column```, label = TRUE```cursor```))",
+            "suffix": "_wday"
+          },
+          {
+            "title": "Day of quarter",
+            "command": "mutate(```this_column``` = qday(```this_column``````cursor```))",
+            "suffix": "_qday"
+          },
+          {
+            "title": "Day of year",
+            "command": "mutate(```this_column``` = yday(```this_column``````cursor```))",
+            "suffix": "_yday"
+          }
+        ]
+      },
+      {
+        "title": "Round",
+        "menu": [
+          {
+            "title": "round_date",
+            "menu": [
+              {
+                "title": "Year",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"year\"```cursor```))"
+              },
+              {
+                "title": "Quarter",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"quarter\"```cursor```))"
+              },
+              {
+                "title": "Month",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"month\"```cursor```))"
+              },
+              {
+                "title": "Week",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"week\"```cursor```))"
+              },
+              {
+                "title": "Day",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"day\"```cursor```))"
+              },
+              {
+                "title": "Hour",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"hour\"```cursor```))"
+              },
+              {
+                "title": "Minute",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"minute\"```cursor```))"
+              },
+              {
+                "title": "Second",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"second\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "floor_date",
+            "menu": [
+              {
+                "title": "Year",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"year\"```cursor```))"
+              },
+              {
+                "title": "Quarter",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"quarter\"```cursor```))"
+              },
+              {
+                "title": "Month",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"month\"```cursor```))"
+              },
+              {
+                "title": "Week",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"week\"```cursor```))"
+              },
+              {
+                "title": "Day",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"day\"```cursor```))"
+              },
+              {
+                "title": "Hour",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"hour\"```cursor```))"
+              },
+              {
+                "title": "Minute",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"minute\"```cursor```))"
+              },
+              {
+                "title": "Second",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"second\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "ceiling_data",
+            "menu": [
+              {
+                "title": "Year",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"year\"```cursor```))"
+              },
+              {
+                "title": "Quarter",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"quarter\"```cursor```))"
+              },
+              {
+                "title": "Month",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"month\"```cursor```))"
+              },
+              {
+                "title": "Week",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"week\"```cursor```))"
+              },
+              {
+                "title": "Day",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"day\"```cursor```))"
+              },
+              {
+                "title": "Hour",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"hour\"```cursor```))"
+              },
+              {
+                "title": "Minute",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"minute\"```cursor```))"
+              },
+              {
+                "title": "Second",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"second\"```cursor```))"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Rollback",
+        "menu": [
+          {
+            "title": "First day of the month",
+            "command": "mutate(```this_column``` = rollback(```this_column```, roll_to_first = TRUE```cursor```))"
+          },
+          {
+            "title": "Last day of the month before",
+            "command": "mutate(```this_column``` = rollback(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Convert NA to..",
+            "command": "mutate(```this_column``` = coalesce(```this_column```, ```cursor```))"
+          },
+          {
+            "title": "Convert ... to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, ```cursor```))"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "POSIXct",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` == \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` == \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` == now() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` == now() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` == now() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` == now() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` != \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` != \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` != now() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` != now() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` != now() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` != now() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<",
+            "label": "less than",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` < \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` < \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` < now() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` < now() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` < now() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` < now() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<=",
+            "label": "less than or equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` <= \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` <= \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` <= now() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` <= now() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` <= now() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` <= now() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">",
+            "label": "greater than",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` > \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` > \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` > now() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` > now() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` > now() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` > now() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">=",
+            "label": "greater than or equal to",
+            "menu": [
+              {
+                "title": "Specific date",
+                "command": "filter(```this_column``` >= \"```cursor```2016-01-15\")",
+                "selectLength": 10
+              },
+              {
+                "title": "Expression",
+                "command": "filter(```this_column``` >= \"```cursor```\")"
+              },
+              {
+                "title": "N days ago",
+                "command": "filter(```this_column``` >= now() - days(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks ago",
+                "command": "filter(```this_column``` >= now() - weeks(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N months ago",
+                "command": "filter(```this_column``` >= now() - months(```cursor```1))",
+                "selectLength": 1
+              },
+              {
+                "title": "N years ago",
+                "command": "filter(```this_column``` >= now() - years(```cursor```1))",
+                "selectLength": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "median",
+            "command": "summarize(```new_column``` = median(```this_column```, na.rm = TRUE))",
+            "suffix": "_median"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Convert to...",
+        "menu": [
+          {
+            "title": "Convert to Number",
+            "command": "mutate(```this_column``` = decimal_date(```this_column``````cursor```))"
+          },
+          {
+            "title": "Convert to Text",
+            "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+          },
+          {
+            "title": "Convert to Date",
+            "command": "mutate(```this_column``` = as.Date(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "title": "Extract",
+        "menu": [
+          {
+            "title": "Year",
+            "command": "mutate(```new_column``` = year(```this_column``````cursor```))",
+            "suffix": "_year"
+          },
+          {
+            "title": "Month",
+            "command": "mutate(```new_column``` = month(```this_column``````cursor```))",
+            "suffix": "_month"
+          },
+          {
+            "title": "Week",
+            "command": "mutate(```new_column``` = week(```this_column``````cursor```))",
+            "suffix": "_week"
+          },
+          {
+            "title": "Day",
+            "command": "mutate(```new_column``` = day(```this_column``````cursor```))",
+            "suffix": "_day"
+          },
+          {
+            "title": "Hour",
+            "command": "mutate(```new_column``` = hour(```this_column``````cursor```))",
+            "suffix": "_hour"
+          },
+          {
+            "title": "Minute",
+            "command": "mutate(```new_column``` = minute(```this_column``````cursor```))",
+            "suffix": "_minute"
+          },
+          {
+            "title": "Second",
+            "command": "mutate(```new_column``` = second(```this_column``````cursor```))",
+            "suffix": "_second"
+          },
+          {
+            "title": "Day of week",
+            "command": "mutate(```new_column``` = wday(```this_column```, label = TRUE```cursor```))",
+            "suffix": "_wday"
+          },
+          {
+            "title": "Day of quarter",
+            "command": "mutate(```this_column``` = qday(```this_column``````cursor```))",
+            "suffix": "_qday"
+          },
+          {
+            "title": "Day of year",
+            "command": "mutate(```this_column``` = yday(```this_column``````cursor```))",
+            "suffix": "_yday"
+          }
+        ]
+      },
+      {
+        "title": "Round",
+        "menu": [
+          {
+            "title": "round_date",
+            "menu": [
+              {
+                "title": "Year",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"year\"```cursor```))"
+              },
+              {
+                "title": "Quarter",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"quarter\"```cursor```))"
+              },
+              {
+                "title": "Month",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"month\"```cursor```))"
+              },
+              {
+                "title": "Week",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"week\"```cursor```))"
+              },
+              {
+                "title": "Day",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"day\"```cursor```))"
+              },
+              {
+                "title": "Hour",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"hour\"```cursor```))"
+              },
+              {
+                "title": "Minute",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"minute\"```cursor```))"
+              },
+              {
+                "title": "Second",
+                "command": "mutate(```this_column``` = round_date(```this_column```, \"second\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "floor_date",
+            "menu": [
+              {
+                "title": "Year",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"year\"```cursor```))"
+              },
+              {
+                "title": "Quarter",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"quarter\"```cursor```))"
+              },
+              {
+                "title": "Month",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"month\"```cursor```))"
+              },
+              {
+                "title": "Week",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"week\"```cursor```))"
+              },
+              {
+                "title": "Day",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"day\"```cursor```))"
+              },
+              {
+                "title": "Hour",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"hour\"```cursor```))"
+              },
+              {
+                "title": "Minute",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"minute\"```cursor```))"
+              },
+              {
+                "title": "Second",
+                "command": "mutate(```this_column``` = floor_date(```this_column```, \"second\"```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "ceiling_data",
+            "menu": [
+              {
+                "title": "Year",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"year\"```cursor```))"
+              },
+              {
+                "title": "Quarter",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"quarter\"```cursor```))"
+              },
+              {
+                "title": "Month",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"month\"```cursor```))"
+              },
+              {
+                "title": "Week",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"week\"```cursor```))"
+              },
+              {
+                "title": "Day",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"day\"```cursor```))"
+              },
+              {
+                "title": "Hour",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"hour\"```cursor```))"
+              },
+              {
+                "title": "Minute",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"minute\"```cursor```))"
+              },
+              {
+                "title": "Second",
+                "command": "mutate(```this_column``` = ceiling_data(```this_column```, \"second\"```cursor```))"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Rollback",
+        "menu": [
+          {
+            "title": "First day of the month",
+            "command": "mutate(```this_column``` = rollback(```this_column```, roll_to_first = TRUE```cursor```))"
+          },
+          {
+            "title": "Last day of the month before",
+            "command": "mutate(```this_column``` = rollback(```this_column``````cursor```))"
+          }
+        ]
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Convert NA to..",
+            "command": "mutate(```this_column``` = coalesce(```this_column```, ```cursor```))"
+          },
+          {
+            "title": "Convert ... to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, ```cursor```))"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "time",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "command": "filter(```this_column``` == parse_time(\"```cursor```8:30:00\"))",
+            "selectLength": 7
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "command": "filter(```this_column``` != parse_time(\"```cursor```8:30:00\"))",
+            "selectLength": 7
+          },
+          {
+            "title": "<",
+            "label": "less than",
+            "command": "filter(```this_column``` < parse_time(\"```cursor```8:30:00\"))",
+            "selectLength": 7
+          },
+          {
+            "title": "<=",
+            "label": "less than or equal to",
+            "command": "filter(```this_column``` <= parse_time(\"```cursor```8:30:00\"))",
+            "selectLength": 7
+          },
+          {
+            "title": ">",
+            "label": "greater than",
+            "command": "filter(```this_column``` > parse_time(\"```cursor```8:30:00\"))",
+            "selectLength": 7
+          },
+          {
+            "title": ">=",
+            "label": "greater than or equal to",
+            "command": "filter(```this_column``` >= parse_time(\"```cursor```8:30:00\"))",
+            "selectLength": 7
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "mean (average)",
+            "command": "summarize(```new_column``` = mean(```this_column```, na.rm = TRUE))",
+            "suffix": "_mean"
+          },
+          {
+            "title": "median",
+            "command": "summarize(```new_column``` = median(```this_column```, na.rm = TRUE))",
+            "suffix": "_median"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "IQR (interquartile range)",
+            "command": "summarize(```new_column``` = IQR(```this_column```, na.rm = TRUE))",
+            "suffix": "_IQR"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "mad",
+            "command": "summarize(```new_column``` = mad(```this_column```, na.rm = TRUE))",
+            "suffix": "_mad"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          },
+          {
+            "title": "sd",
+            "command": "summarize(```new_column``` = sd(```this_column```, na.rm = TRUE))",
+            "suffix": "_sd"
+          },
+          {
+            "title": "var",
+            "command": "summarize(```new_column``` = var(```this_column```, na.rm = TRUE))",
+            "suffix": "_var"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Top N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, ```this_column```)",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, ```this_column```)",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Bottom N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, desc(```this_column```))",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, desc(```this_column```))",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Convert to Text",
+        "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Convert NA to..",
+            "command": "mutate(```this_column``` = coalesce(```this_column```, ```cursor```))"
+          },
+          {
+            "title": "Convert ... to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, ```cursor```))"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "difftime",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` == as.difftime(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` == as.difftime(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` == as.difftime(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` == as.difftime(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` == as.difftime(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` != as.difftime(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` != as.difftime(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` != as.difftime(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` != as.difftime(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` != as.difftime(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<",
+            "label": "less than",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` < as.difftime(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` < as.difftime(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` < as.difftime(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` < as.difftime(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` < as.difftime(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<=",
+            "label": "less than or equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` <= as.difftime(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` <= as.difftime(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` <= as.difftime(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` <= as.difftime(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` <= as.difftime(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">",
+            "label": "greater than",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` > as.difftime(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` > as.difftime(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` > as.difftime(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` > as.difftime(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` > as.difftime(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">=",
+            "label": "greater than or equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` >= as.difftime(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` >= as.difftime(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` >= as.difftime(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` >= as.difftime(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` >= as.difftime(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "mean (average)",
+            "command": "summarize(```new_column``` = mean(```this_column```, na.rm = TRUE))",
+            "suffix": "_mean"
+          },
+          {
+            "title": "median",
+            "command": "summarize(```new_column``` = median(```this_column```, na.rm = TRUE))",
+            "suffix": "_median"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "IQR (interquartile range)",
+            "command": "summarize(```new_column``` = IQR(```this_column```, na.rm = TRUE))",
+            "suffix": "_IQR"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "mad",
+            "command": "summarize(```new_column``` = mad(```this_column```, na.rm = TRUE))",
+            "suffix": "_mad"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          },
+          {
+            "title": "sd",
+            "command": "summarize(```new_column``` = sd(```this_column```, na.rm = TRUE))",
+            "suffix": "_sd"
+          },
+          {
+            "title": "var",
+            "command": "summarize(```new_column``` = var(```this_column```, na.rm = TRUE))",
+            "suffix": "_var"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Top N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, ```this_column```)",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, ```this_column```)",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Bottom N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, desc(```this_column```))",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, desc(```this_column```))",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Convert to Text",
+        "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Convert NA to..",
+            "command": "mutate(```this_column``` = coalesce(```this_column```, ```cursor```))"
+          },
+          {
+            "title": "Convert ... to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, ```cursor```))"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "duration",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "==",
+            "label": "equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` == duration(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` == duration(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` == duration(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` == duration(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` == duration(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "!=",
+            "label": "not equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` != duration(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` != duration(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` != duration(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` != duration(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` != duration(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<",
+            "label": "less than",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` < duration(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` < duration(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` < duration(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` < duration(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` < duration(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": "<=",
+            "label": "less than or equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` <= duration(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` <= duration(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` <= duration(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` <= duration(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` <= duration(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">",
+            "label": "greater than",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` > duration(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` > duration(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` > duration(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` > duration(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` > duration(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          },
+          {
+            "title": ">=",
+            "label": "greater than or equal to",
+            "menu": [
+              {
+                "title": "N seconds",
+                "command": "filter(```this_column``` >= duration(```cursor```1, units = \"secs\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N minutes",
+                "command": "filter(```this_column``` >= duration(```cursor```1, units = \"mins\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N hours",
+                "command": "filter(```this_column``` >= duration(```cursor```1, units = \"hours\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N days",
+                "command": "filter(```this_column``` >= duration(```cursor```1, units = \"days\"))",
+                "selectLength": 1
+              },
+              {
+                "title": "N weeks",
+                "command": "filter(```this_column``` >= duration(```cursor```1, units = \"weeks\"))",
+                "selectLength": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "mean (average)",
+            "command": "summarize(```new_column``` = mean(```this_column```, na.rm = TRUE))",
+            "suffix": "_mean"
+          },
+          {
+            "title": "median",
+            "command": "summarize(```new_column``` = median(```this_column```, na.rm = TRUE))",
+            "suffix": "_median"
+          },
+          {
+            "title": "max",
+            "command": "summarize(```new_column``` = max(```this_column```, na.rm = TRUE))",
+            "suffix": "_max"
+          },
+          {
+            "title": "min",
+            "command": "summarize(```new_column``` = min(```this_column```, na.rm = TRUE))",
+            "suffix": "_min"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "IQR (interquartile range)",
+            "command": "summarize(```new_column``` = IQR(```this_column```, na.rm = TRUE))",
+            "suffix": "_IQR"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          },
+          {
+            "title": "mad",
+            "command": "summarize(```new_column``` = mad(```this_column```, na.rm = TRUE))",
+            "suffix": "_mad"
+          },
+          {
+            "title": "nth",
+            "command": "summarize(```new_column``` = nth(```this_column```, n = ```cursor```))",
+            "suffix": "_nth"
+          },
+          {
+            "title": "sd",
+            "command": "summarize(```new_column``` = sd(```this_column```, na.rm = TRUE))",
+            "suffix": "_sd"
+          },
+          {
+            "title": "var",
+            "command": "summarize(```new_column``` = var(```this_column```, na.rm = TRUE))",
+            "suffix": "_var"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Top N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, ```this_column```)",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, ```this_column```)",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, ```this_column```)",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Bottom N",
+        "menu": [
+          {
+            "title": "5",
+            "command": "top_n(```cursor```5, desc(```this_column```))",
+            "selectLength": 1
+          },
+          {
+            "title": "10",
+            "command": "top_n(```cursor```10, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "20",
+            "command": "top_n(```cursor```20, desc(```this_column```))",
+            "selectLength": 2
+          },
+          {
+            "title": "100",
+            "command": "top_n(```cursor```100, desc(```this_column```))",
+            "selectLength": 3
+          }
+        ]
+      },
+      {
+        "title": "Convert to Text",
+        "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Convert NA to..",
+            "command": "mutate(```this_column``` = coalesce(```this_column```, ```cursor```))"
+          },
+          {
+            "title": "Convert ... to NA",
+            "command": "mutate(```this_column``` = na_if(```this_column```, ```cursor```))"
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "logical",
+    "menu": [
+      {
+        "title": "Filter",
+        "menu": [
+          {
+            "title": "Keep only TRUE",
+            "command": "filter(```this_column```)"
+          },
+          {
+            "title": "Keep only FALSE",
+            "command": "filter(!```this_column```)"
+          }
+        ]
+      },
+      {
+        "title": "Group by",
+        "command": "group_by(```this_column``````cursor```)"
+      },
+      {
+        "title": "Summarize (Aggregate)",
+        "menu": [
+          {
+            "title": "all",
+            "command": "summarize(```new_column``` = all(```this_column```))",
+            "suffix": "_all"
+          },
+          {
+            "title": "any",
+            "command": "summarize(```new_column``` = any(```this_column```))",
+            "suffix": "_any"
+          },
+          {
+            "title": "n (count)",
+            "command": "summarize(```new_column``` = n(```this_column```))",
+            "suffix": "_n"
+          },
+          {
+            "title": "n_distinct",
+            "command": "summarize(```new_column``` = n_distinct(```this_column```))",
+            "suffix": "_n_distinct"
+          },
+          {
+            "title": "first",
+            "command": "summarize(```new_column``` = first(```this_column```))",
+            "suffix": "_first"
+          },
+          {
+            "title": "last",
+            "command": "summarize(```new_column``` = last(```this_column```))",
+            "suffix": "_last"
+          }
+        ]
+      },
+      {
+        "title": "Create an expression",
+        "command": "mutate(new_column = ```cursor```)"
+      },
+      {
+        "title": "Sort by",
+        "menu": [
+          {
+            "title": "Ascending",
+            "command": "arrange(```this_column```)"
+          },
+          {
+            "title": "Descending",
+            "command": "arrange(desc(```this_column```))"
+          }
+        ]
+      },
+      {
+        "title": "Count",
+        "command": "count(```this_column```)"
+      },
+      {
+        "title": "Distinct",
+        "command": "distinct(```this_column```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Convert to Text",
+        "command": "mutate(```this_column``` = parse_character(```this_column``````cursor```))"
+      },
+      {
+        "title": "Work with NA",
+        "menu": [
+          {
+            "title": "Drop NA",
+            "command": "filter(!is.na(```this_column```))"
+          },
+          {
+            "title": "Keep only NA",
+            "command": "filter(is.na(```this_column```))"
+          },
+          {
+            "title": "Impute NAs",
+            "menu": [
+              {
+                "title": "TRUE",
+                "command": "mutate(```this_column``` = coalesce(```this_column```, TRUE```cursor```))"
+              },
+              {
+                "title": "FALSE",
+                "command": "mutate(```this_column``` = coalesce(```this_column```, FALSE```cursor```))"
+              }
+            ]
+          },
+          {
+            "title": "Map to NA",
+            "menu": [
+              {
+                "title": "TRUE",
+                "command": "mutate(```this_column``` = na_if(```this_column```, TRUE```cursor```))"
+              },
+              {
+                "title": "FALSE",
+                "command": "mutate(```this_column``` = na_if(```this_column```, FALSE```cursor```))"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Build Model",
+        "menu": [
+          {
+            "title": "Logistic Regression",
+            "command": "build_glm(```this_column``` ~ ```cursor```., keep.source = FALSE, family = binomial(link = 'logit'))",
+            "selectLength": 1
+          }
+        ]
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "menu": [
+      {
+        "title": "Unnest",
+        "command": "unnest(```this_column```, .drop=FALSE)"
+      },
+      {
+        "title": "Count items",
+        "command": "mutate(```new_column``` = list_n(```this_column``````cursor```))",
+        "suffix": "_count"
+      },
+      {
+        "title": "Concatenate items",
+        "command": "mutate(```new_column``` = list_concat(```this_column``````cursor```))",
+        "suffix": "_concat"
+      },
+      {
+        "title": "Extract an item",
+        "command": "mutate(```new_column``` = list_extract(```this_column```, position = ```cursor```))",
+        "suffix": "_extract"
+      },
+      {
+        "title": "Detect a text pattern",
+        "command": "mutate(```new_column``` = str_detect(```this_column```, \"```cursor```\"))",
+        "suffix": "_detected"
+      },
+      {
+        "title": "Filter with a text pattern",
+        "command": "filter(str_detect(```this_column```, \"```cursor```\"))"
+      },
+      {
+        "title": "Drop empty list",
+        "command": "filter(list_n(```this_column```) > 0)"
+      },
+      {
+        "title": "Keep only empty list",
+        "command": "filter(list_n(```this_column```) == 0)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "unknown",
+    "menu": [
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "lm",
+    "menu": [
+      {
+        "title": "Extract summary info (component level)",
+        "command": "tidy_lm(```this_column``````cursor```)"
+      },
+      {
+        "title": "Extract summary info (model level)",
+        "command": "glance_lm(```this_column``````cursor```)"
+      },
+      {
+        "title": "Extract model data",
+        "command": "augment_lm(```this_column``````cursor```)"
+      },
+      {
+        "title": "Augment model data with the source data",
+        "command": "augment_lm(```this_column```, data = source.data```cursor```)"
+      },
+      {
+        "title": "Predict with model for new data",
+        "command": "augment_lm(```this_column```, newdata = ```cursor```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "glm",
+    "menu": [
+      {
+        "title": "Extract summary info (component level)",
+        "command": "tidy_glm(```this_column``````cursor```)"
+      },
+      {
+        "title": "Extract summary info (model level)",
+        "command": "glance_glm(```this_column``````cursor```)"
+      },
+      {
+        "title": "Extract model data",
+        "command": "augment_glm(```this_column``````cursor```)"
+      },
+      {
+        "title": "Augment model data with the source data",
+        "command": "augment_glm(```this_column```, data = source.data, type.predict = \"response\"```cursor```)"
+      },
+      {
+        "title": "Predict with model for new data",
+        "command": "augment_glm(```this_column```, newdata = ```cursor```, type.predict = \"response\")"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  },
+  {
+    "type": "kmeans",
+    "menu": [
+      {
+        "title": "Extract summary info (component level)",
+        "command": "tidy_kmeans(```this_column``````cursor```)"
+      },
+      {
+        "title": "Extract summary info (model level)",
+        "command": "glance_kmeans(```this_column``````cursor```)"
+      },
+      {
+        "title": "Extract model data",
+        "command": "augment_kmeans(```this_column``````cursor```)"
+      },
+      {
+        "title": "Augment model data with the source data",
+        "command": "augment_kmeans(```this_column```, data = source.data```cursor```)"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "title": "Rename",
+        "command": "rename(```cursor```new_column = ```this_column```)",
+        "selectLength": 10
+      },
+      {
+        "title": "Drop",
+        "command": "select(-```this_column```)"
+      }
+    ]
+  }
+]

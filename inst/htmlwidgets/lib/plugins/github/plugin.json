@@ -1,0 +1,41 @@
+{
+    "name": "github",
+    "displayName": "Github Issues",
+    "iconURL" : "lib/images/github.png",
+    "helpURL" :  "http://docs.exploratory.io/import/github.html",
+    "function": "exploratory::getGithubIssues",
+    "rSourceFile" : "plugin.r",
+    "rPackageDependencies": [],
+    "timestamp": "2016-04-11T23:54:42.688Z",
+    "updatedBy": "",
+    "inputParameters": [
+      {
+        "name" : "username", 
+        "displayName":"Username", 
+        "dataType":"text", 
+        "defaultValue" : "",
+        "required" : true
+      }, 
+      {
+        "name": "password", 
+        "displayName":"Password", 
+        "dataType": "password", 
+        "defaultValue" : "",
+        "required" : true
+      },
+      {
+        "name" : "owner",
+        "displayName" : "Owner",
+        "dataType" : "text",
+        "defaultValue" : "",
+        "required" : true
+      },
+      {
+        "name" : "Repository",
+        "displayName" : "Repository",
+        "dataType" : "text",
+        "defaultValue" : "",
+        "required" : true 
+      }
+    ]
+}
