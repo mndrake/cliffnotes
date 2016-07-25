@@ -6,16 +6,13 @@
 #'
 #' @export
 cliffnotes <- function(df, width = NULL, height = NULL) {
-
-  # forward options using x
-  x = list(
-    data = `_tam_getSummary`(df)
-  )
+  params <- list(data = `_tam_getSummary`(df))
+  attr(params, 'TOJSON_ARGS') <- list(auto_unbox = FALSE)
 
   # create widget
   htmlwidgets::createWidget(
     name = 'cliffnotes',
-    x,
+    x = params,
     width = width,
     height = height,
     package = 'cliffnotes'

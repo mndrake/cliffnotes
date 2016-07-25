@@ -52,16 +52,16 @@ var DataFrameSummary = React.createClass({
             N = data[4],
             P = [];
         columns.forEach(function (n, e) {
-            var L =  data[1][n],
+            var L =  data[1][n][0],
                 I = data[2][n],
                 hist = data[3][n],
-                unique = data[6][n],
-                maxL = data[8][n],
-                minL = data[9][n],
+                unique = data[6][n][0],
+                maxL = data[8][n][0],
+                minL = data[9][n][0],
                 s = 0,
                 _ = [[0]];
             console.log(n, L);
-            L == "integer" ? P.push(React.createElement(NumericTile, {
+            L == "integer" || L == "numeric" ? P.push(React.createElement(NumericTile, {
                     key: n,
                     value: n,
                     idx: e,
