@@ -6,7 +6,7 @@
 #'
 #' @export
 cliffnotes <- function(df, width = NULL, height = NULL) {
-  params <- list(data = `_tam_getSummary`(df))
+  params <- list(data = get_data_frame_summary(df))
   attr(params, 'TOJSON_ARGS') <- list(auto_unbox = FALSE, keep_vec_names=FALSE)
 
   # create widget
