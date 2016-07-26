@@ -25,9 +25,9 @@ dependencies:
   script: d3.js
 - name: react
   version: 15.2.1
-  src: htmlwidgets/lib/react/build
+  src: htmlwidgets/lib/react
   script: react.min.js
 - name: react-dom
   version: 15.2.1
-  src: htmlwidgets/lib/react/build
+  src: htmlwidgets/lib/react
   script: react-dom.min.js
