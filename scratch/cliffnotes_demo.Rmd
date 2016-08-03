@@ -1,0 +1,19 @@
+---
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## `cliffnotes`
+
+The `cliffnotes` library allows you to get a quick overview of you an `R` dataframe. It gives feedback on basic summary statics as well as the top values for categorical features.
+
+```{r cliffnotes}
+library(cliffnotes)
+library(nycflights13)
+
+cliffnotes(nycflights13::flights, width=900)
+```
