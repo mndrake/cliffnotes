@@ -1,3 +1,3 @@
 # cliffnotes
 
-Summary View of an R dataframe
+visual summary of an R dataframe
