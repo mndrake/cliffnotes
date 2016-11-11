@@ -13,7 +13,7 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         ReactDOM.render(
-            React.createElement(DataFrameSummary, {data: x.data}),
+            React.createElement(DataFrameSummary, {data: x.data, el: el}),
             document.getElementById(el.id)
         );
 
@@ -29,12 +29,13 @@ HTMLWidgets.widget({
 var DataFrameSummary = React.createClass({
     updateDimensions: function() {
         var w = window,
+            el = this.props.el,
             d = document,
             documentElement = d.documentElement,
             body = d.getElementsByTagName('body')[0],
-            width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
-            height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
-        d3.select("#data-frame-summary").style("height", height + 'px');
+            width = el.clientWidth || w.innerWidth || documentElement.clientWidth || body.clientWidth,
+            height =  el.clientHeight || w.innerHeight ||documentElement.clientHeight || body.clientHeight;
+        d3.select("#data-frame-summary").style("height", height + 'px').style("width", width + 'px');
     },
     componentWillMount: function() {
         this.updateDimensions();
@@ -166,6 +167,21 @@ var FactorTile = React.createClass({
             return this._scientificFmtr(e);
         var t = this._humanReadableFmtr(e);
         return -1 === t.indexOf(".") ? t : t.replace(/0*$/, "").replace(/\.$/, "")
+    }, renderFirst6Rows: function (e) {
+        var t = [], n = e.slice().splice(1, 6);
+        return n.length > 0 && (/^NA/.test(n[n.length - 1]) && n.pop(), t = n.map(function (e) {
+            var t = {width: "100%"},
+                n = React.createElement("div", {className: "summary-tile-overlay"},
+                    React.createElement("pre", null, e)),
+                i = React.createElement("div",
+                    {placement: "bottom", trigger: "hover", overlay: n, animation: !1, rootClose: !0},
+                    React.createElement("div", {className: "summary-view-tile-graph-bar"},
+                        React.createElement("div", {className: "summary-view-tile-graph-bar-bar first6", style: t}),
+                        React.createElement("div", {className: "summary-view-tile-graph-bar-text"}, e)));
+            return i
+        }), t.push(React.createElement("div", null,
+            React.createElement("span",
+                {className: "summary-view-tile-message-text"}, "Showing the first ", n.length, " values ")))), t
     }, renderTop6Data: function (e, t) {
             var n = [], i = e.map(function (e) {
                 return {text: e}

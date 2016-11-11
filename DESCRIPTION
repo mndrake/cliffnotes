@@ -1,11 +1,11 @@
 Package: cliffnotes
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Visual summary of a dataframe
+Version: 0.1-1
+Authors: person("David", "Carlson", role = c("aut", "cre"))
+Description: Visual summary of a dataframe.
 Depends:
-    R (>= 3.3.1)
-License: What license is it under?
+    R (>= 3.3.0)
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
