@@ -1,6 +1,6 @@
 Package: cliffnotes
 Title: Visual summary of a dataframe
-Version: 0.1-1
+Version: 0.1-2
 Authors: person("David", "Carlson", role = c("aut", "cre"))
 Description: Visual summary of a dataframe.
 Depends:
