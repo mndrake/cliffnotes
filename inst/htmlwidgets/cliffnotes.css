@@ -1,5 +1,4 @@
 .data-frame-summary {
-/*    overflow-x: hidden; */
     overflow-y: auto;
     padding-left: 7px
 }
@@ -127,11 +126,11 @@
 }
 
 .data-frame-summary .summary-view-tile .summary-view-tile-hist-area .bar {
-    fill: #99e4f5
+    fill: #b2cee5
 }
 
 .data-frame-summary .summary-view-tile .summary-view-tile-hist-area .bar.selected {
-    fill: rgba(153, 228, 245, .6)
+    fill: rgba(239, 83, 83, .6)
 }
 
 .data-frame-summary .summary-view-tile .summary-view-tile-hist-area .tooltip {
@@ -292,7 +291,7 @@
 }
 
 .data-frame-summary .summary-view-tile .summary-view-tile-graph-bar .summary-view-tile-graph-bar-bar {
-    background-color: #99e4f5;
+    background-color: #b2cee5;
     height: 20px
 }
 
@@ -379,7 +378,7 @@
 }
 
 .data-frame-summary .summary-row .summary-row-hist-area .bar {
-    fill: rgba(106, 180, 242, .31)
+  fill: rgba(178, 206, 229, .31)
 }
 
 .data-frame-summary .summary-row .summary-row-hist-area .bar.selected {

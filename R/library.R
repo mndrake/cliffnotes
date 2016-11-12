@@ -108,7 +108,15 @@ get_data_frame_summary = function(x) {
     sapply(x, function(x) {
       # Exclude the case if all the data is NA - hist() will complain that case.
       if (all(is.na(x)) == FALSE) {
-        if (is.numeric(x)){   # number types, duration, period, interval
+        if (is.integer(x)) {
+          if ((max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) < 40) {
+           .a <- hist(x, breaks = (min(x, na.rm = TRUE) - 0.5):(max(x, na.rm = TRUE) + 0.5), plot = FALSE);
+           return (list(.a$breaks, .a$counts, .a$mids, 0))
+          } else {
+           .a <- hist(x, plot=FALSE);
+           return (list(.a$breaks, .a$counts, .a$mids, 0))
+          }
+        } else if (is.numeric(x)){   # number types, duration, period, interval
           .a<- hist(x, plot=FALSE);
           return (list(.a$breaks, .a$counts, .a$mids, 0))
         } else if (is.difftime(x)){   # difftime
