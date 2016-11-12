@@ -22,7 +22,7 @@ dependencies:
 - name: d3
   version: 3.5.6
   src: htmlwidgets/lib/d3
-  script: d3.js
+  script: d3.min.js
 - name: react
   version: 15.2.1
   src: htmlwidgets/lib/react
