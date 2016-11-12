@@ -4,7 +4,7 @@ Version: 0.1-2
 Authors: person("David", "Carlson", role = c("aut", "cre"))
 Description: Visual summary of a dataframe.
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.2.0)
 License: MIT
 Encoding: UTF-8
 LazyData: true
