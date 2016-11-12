@@ -1,6 +1,6 @@
 .data-frame-summary {
-    overflow-x: hidden;
-    overflow-y: scroll;
+/*    overflow-x: hidden; */
+    overflow-y: auto;
     padding-left: 7px
 }
 
@@ -522,7 +522,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
     padding: 0
 }
 
