@@ -1,23 +1,14 @@
 library(cliffnotes)
 library(dplyr)
 library(nycflights13)
-library(readr)
 
-cliffnotes(flights)
-cliffnotes(airports)
-cliffnotes(weather)
+cliffnotes(nycflights13::flights)
+cliffnotes(nycflights13::airports)
+cliffnotes(nycflights13::weather)
 
-df <- flights
-df$delay15 <- !(is.na(df$dep_delay) | df$dep_delay < 15)
+weather_df <- nycflights13::weather
+weather_df %>% mutate(month = as.integer(month)) %>% cliffnotes
 
-cliffnotes(df)
-
-
-library(lubridate)
-library(stringr)
-library(jsonlite)
-source('R/library.R')
-
-
-df_summary <- get_data_frame_summary(df)
-toJSON(df_summary) %>% write('data.txt')
+flights_df <- nycflights13::flights
+flights_df$delay15 <- !(is.na(flights_df$dep_delay) | flights_df$dep_delay < 15)
+cliffnotes(flights_df)

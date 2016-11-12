@@ -529,11 +529,6 @@ body {
     color: #4d4d4d;
     font-family: Helvetica Neue, Arial, Helvetica, lato, sans-serif;
     font-size: 14px;
-    -moz-font-smoothing: antialiased;
-    -ms-font-smoothing: antialiased;
-    -o-font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
     line-height: 1.4em;
     margin: 0 auto
 }
