@@ -101,6 +101,18 @@ var DataFrameSummary = React.createClass({
                     outlier: _,
                     nrow: N
                 }, null)
+            ) : L == "logical" ? P.push(React.createElement(LogicalTile, {
+                    key: n,
+                    value: n,
+                    idx: e,
+                    col: n,
+                    dt: L,
+                    stat: I,
+                    hist: hist,
+                    nna: s,
+                    outlier: _,
+                    nrow: N
+            }, null)
             ) : ({});
         });
 
@@ -110,12 +122,12 @@ var DataFrameSummary = React.createClass({
 
 var FactorTile = React.createClass({
     getInitialState: function () {
-        return {}
+        return {};
     }, _scientificFmtr: d3.format(".4e"),
     _humanReadableFmtr: d3.format(",.8g"),
     getNumberOfNAs: function (e) {
         var t = e[e.length - 1].split(":"), n = /^NA/.test(t[0].trim()) ? parseInt(t[1]) : 0;
-        return n
+        return n;
     }, renderHealthBar: function (e, t, n, a) {
         var o = n && 0 !== n ? n / t * 100 : 0,
             i = a && 0 !== a ? a / t * 100 : 0,
@@ -128,13 +140,13 @@ var FactorTile = React.createClass({
                     var r = n.nativeEvent.offsetX;
                     r = 100 > r ? r + 10 : r - 100,
                         $elem = $("#" + e).html(t).css("left", r + "px").addClass("show"),
-                        $(n.target).css("opacity", "0.5")
-                }
+                        $(n.target).css("opacity", "0.5");
+                };
             },
             p = function (e) {
                 return function (t) {
-                    $elem = $("#" + e).removeClass("show"), $(t.target).css("opacity", "1")
-                }
+                    $elem = $("#" + e).removeClass("show"), $(t.target).css("opacity", "1");
+                };
             },
             m = [];
         return m.push(React.createElement("td", {
@@ -160,13 +172,13 @@ var FactorTile = React.createClass({
             React.createElement("div", {
                 className: "balloon",
                 id: e
-            }))
+            }));
     }, formatNumber: function (e) {
         if (isNaN(e))return e;
-        if (e = parseFloat(e), Math.abs(e) >= 1e8 || Math.abs(e) < .01 && 0 !== e)
+        if (e = parseFloat(e), Math.abs(e) >= 1e8 || Math.abs(e) < 0.01 && 0 !== e)
             return this._scientificFmtr(e);
         var t = this._humanReadableFmtr(e);
-        return -1 === t.indexOf(".") ? t : t.replace(/0*$/, "").replace(/\.$/, "")
+        return -1 === t.indexOf(".") ? t : t.replace(/0*$/, "").replace(/\.$/, "");
     }, renderFirst6Rows: function (e) {
         var t = [], n = e.slice().splice(1, 6);
         return n.length > 0 && (/^NA/.test(n[n.length - 1]) && n.pop(), t = n.map(function (e) {
@@ -178,32 +190,32 @@ var FactorTile = React.createClass({
                     React.createElement("div", {className: "summary-view-tile-graph-bar"},
                         React.createElement("div", {className: "summary-view-tile-graph-bar-bar first6", style: t}),
                         React.createElement("div", {className: "summary-view-tile-graph-bar-text"}, e)));
-            return i
+            return i;
         }), t.push(React.createElement("div", null,
             React.createElement("span",
-                {className: "summary-view-tile-message-text"}, "Showing the first ", n.length, " values ")))), t
+                {className: "summary-view-tile-message-text"}, "Showing the first ", n.length, " values ")))), t;
     }, renderTop6Data: function (e, t) {
             var n = [], i = e.map(function (e) {
-                return {text: e}
+                return {text: e};
             }), s = i.filter(function (e) {
-                return !isNaN(e.text.substring(e.text.lastIndexOf(":") + 1))
+                return !isNaN(e.text.substring(e.text.lastIndexOf(":") + 1));
             });
             s.forEach(function (e) {
-                e.val = parseInt(e.text.substring(e.text.lastIndexOf(":") + 1))
+                e.val = parseInt(e.text.substring(e.text.lastIndexOf(":") + 1));
             });
             var l = s.sort(function (e, t) {
-                return t.val - e.val
+                return t.val - e.val;
             }), c = -1;
             if (l.forEach(function (e, t) {
-                    /^\(Other\)/.test(e.text) && (c = t)
+                    /^\(Other\)/.test(e.text) && (c = t);
                 }), -1 !== c) {
                 var u = l.splice(c, 1);
-                l = l.concat(u)
+                l = l.concat(u);
             }
             var d = d3.max(l, function (e) {
-                return /^\(Other\)/.test(e.text) ? 0 : e.val
+                return /^\(Other\)/.test(e.text) ? 0 : e.val;
             }), p = d3.scale.linear().domain([0, d]).range([0, 100]);
-            return n = l.map(function (e, n) {
+            return l.map(function (e, n) {
                 var i = {width: /^\(Other\)/.test(e.text) ? "0%" :
                     p(parseInt(e.text.substring(e.text.lastIndexOf(":") + 1))) + "%"},
                     s = e.text.split(":"),
@@ -214,8 +226,8 @@ var FactorTile = React.createClass({
                     h = React.createElement("div", {className: "summary-view-tile-graph-bar"},
                         React.createElement("div", {className: "summary-view-tile-graph-bar-bar", style: i}),
                         React.createElement("div", {className: "summary-view-tile-graph-bar-text"}, u));
-                return h
-            })
+                return h;
+            });
     }, render: function () {
         console.log('creating tile:', this.props.col);
         try {
@@ -274,20 +286,19 @@ var FactorTile = React.createClass({
                                         React.createElement("span",
                                             {className: "summary-view-tile-stats-label"}, "Max Length"),
                                         React.createElement("span",
-                                            {className: "summary-view-tile-stats-value"}, this.formatNumber(i)))))))))
+                                            {className: "summary-view-tile-stats-value"}, this.formatNumber(i)))))))));
         } catch (h) {
-            return console.error("Failed to render summary for column: " + e, h) //, this.renderErrorTile()
+            return console.error("Failed to render summary for column: " + e, h); //, this.renderErrorTile()
         }
     }
 });
-
 
 var NumericTile = React.createClass({
     _scientificFmtr: d3.format(".4e"),
     _humanReadableFmtr: d3.format(",.8g"),
     getNumberOfNAs: function (e) {
         var t = e[e.length - 1].split(":"), n = /^NA/.test(t[0].trim()) ? parseInt(t[1]) : 0;
-        return n
+        return n;
     },
     renderHealthBar: function (e, t, n, a) {
         var o = n && 0 !== n ? n / t * 100 : 0,
@@ -301,13 +312,13 @@ var NumericTile = React.createClass({
                     var r = n.nativeEvent.offsetX;
                     r = 100 > r ? r + 10 : r - 100,
                         $elem = $("#" + e).html(t).css("left", r + "px").addClass("show"),
-                        $(n.target).css("opacity", "0.5")
-                }
+                        $(n.target).css("opacity", "0.5");
+                };
             },
             p = function (e) {
                 return function (t) {
-                    $elem = $("#" + e).removeClass("show"), $(t.target).css("opacity", "1")
-                }
+                    $elem = $("#" + e).removeClass("show"), $(t.target).css("opacity", "1");
+                };
             },
             m = [];
         return m.push(React.createElement("td", {
@@ -333,13 +344,13 @@ var NumericTile = React.createClass({
             React.createElement("div", {
             className: "balloon",
             id: e
-        }))
+        }));
     }, formatNumber: function (e) {
         if (isNaN(e))return e;
-        if (e = parseFloat(e), Math.abs(e) >= 1e8 || Math.abs(e) < .01 && 0 !== e)
+        if (e = parseFloat(e), Math.abs(e) >= 1e8 || Math.abs(e) < 0.01 && 0 !== e)
             return this._scientificFmtr(e);
         var t = this._humanReadableFmtr(e);
-        return -1 === t.indexOf(".") ? t : t.replace(/0*$/, "").replace(/\.$/, "")
+        return -1 === t.indexOf(".") ? t : t.replace(/0*$/, "").replace(/\.$/, "");
     }, _renderHistogram: function (e, t, n, r, a, o) {
         var i = {
             top: 5,
@@ -348,7 +359,7 @@ var NumericTile = React.createClass({
             left: 2 },
             s = t - i.left - i.right,
             c = n - i.top - i.bottom,
-            u = d3.scale.ordinal().rangeRoundBands([0, s], .1),
+            u = d3.scale.ordinal().rangeRoundBands([0, s], 0.1),
             d = d3.scale.linear().range([c, 0]),
             p = (d3.svg.axis().scale(u).ticks(2).orient("bottom"),
                  d3.svg.axis().scale(d).orient("left"),
@@ -374,25 +385,25 @@ var NumericTile = React.createClass({
         u.domain(r.mids), d.domain([0, d3.max(r.counts)]);
         var g, v = [];
         for (g = 0; g < r.mids.length; g++){
-            v.push(o + ":" + r.breaks[g] + ":" + r.breaks[g + 1] + ":" + r.counts[g])
+            v.push(o + ":" + r.breaks[g] + ":" + r.breaks[g + 1] + ":" + r.counts[g]);
         }
         var b = d3.zip(r.mids, r.counts, v), y = this;
         h.selectAll(".bar").data(b).enter().append("rect").attr("class", "bar").attr("id", function (e) {
-            return e[2]
+            return e[2];
         }).attr("x", function (e) {
-            return u(e[0])
+            return u(e[0]);
         }).attr("y", function (e) {
-            return c - d(e[1]) < 1 ? c - 1 : d(e[1])
+            return c - d(e[1]) < 1 ? c - 1 : d(e[1]);
         }).attr("height", function (e) {
-            return c - d(e[1]) < 1 ? 1 : c - d(e[1])
+            return c - d(e[1]) < 1 ? 1 : c - d(e[1]);
         }).attr("width", u.rangeBand()).on("mouseover", function () {
             var e = this.id.split(":"),
                 t = "<table><tbody><tr><td>Range:</td><td>" + y.formatNumber(e[1]) + " - " + y.formatNumber(e[2]) + "</td></tr>";
             t += "<tr><td>Count:</td><td>" + y.formatNumber(e[3]) + "</td></tr></tbody></table>",
                 f.html(t).style("left", "10px").style("top", d3.event.offsetY - 60 + "px"),
-                f.transition().duration(20).style("opacity", .9), d3.select(this).classed({selected: !0})
+                f.transition().duration(20).style("opacity", 0.9), d3.select(this).classed({selected: !0});
         }).on("mouseout", function (e) {
-            f.transition().duration(10).style("opacity", 0), d3.select(this).classed({selected: !1})
+            f.transition().duration(10).style("opacity", 0), d3.select(this).classed({selected: !1});
         });
         console.log('building chart');
     }, _componentDidMount: function (e, t) {
@@ -476,7 +487,7 @@ var NumericTile = React.createClass({
                                 React.createElement("span",
                                     {className: "summary-view-tile-stats-value"}, this.formatNumber(averageN))))
                     ))))
-        )
+        );
     }
 });
 
@@ -484,7 +495,8 @@ var DateTile = React.createClass({
     _scientificFmtr: d3.format(".4e"),
     _humanReadableFmtr: d3.format(",.8g"),
     getNumberOfNAs: function (e) {
-        var t = e[e.length - 1].split(":"), n = /^NA/.test(t[0].trim()) ? parseInt(t[1]) : 0;
+        var t = e[e.length - 1].split(":"),
+            n = /^NA/.test(t[0].trim()) ? parseInt(t[1]) : 0;
         return n
     },
     getInitialState: function () {
@@ -680,3 +692,144 @@ var DateTile = React.createClass({
         }
     }
 });
+
+var LogicalTile = React.createClass({
+    _scientificFmtr: d3.format(".4e"),
+    _humanReadableFmtr: d3.format(",.8g"),
+    getNumberOfNAs: function (e) {
+        var t = e[e.length - 1].split(":"), n = /^NA/.test(t[0].trim()) ? parseInt(t[1]) : 0;
+        return n
+    }, formatNumber: function (e) {
+        if (isNaN(e))return e;
+        if (e = parseFloat(e), Math.abs(e) >= 1e8 || Math.abs(e) < .01 && 0 !== e)
+            return this._scientificFmtr(e);
+        var t = this._humanReadableFmtr(e);
+        return -1 === t.indexOf(".") ? t : t.replace(/0*$/, "").replace(/\.$/, "")
+    }, renderTop6Data: function (e, t) {
+        var n = [], i = e.map(function (e) {
+            return {text: e}
+        }), s = i.filter(function (e) {
+            return !isNaN(e.text.substring(e.text.lastIndexOf(":") + 1))
+        });
+        s.forEach(function (e) {
+            e.val = parseInt(e.text.substring(e.text.lastIndexOf(":") + 1))
+        });
+        var l = s.sort(function (e, t) {
+            return t.val - e.val
+        }), c = -1;
+        if (l.forEach(function (e, t) {
+                /^\(Other\)/.test(e.text) && (c = t)
+            }), -1 !== c) {
+            var u = l.splice(c, 1);
+            l = l.concat(u)
+        }
+        var d = d3.max(l, function (e) {
+            return /^\(Other\)/.test(e.text) ? 0 : e.val
+        }), p = d3.scale.linear().domain([0, d]).range([0, 100]);
+        return n = l.map(function (e, n) {
+            var i = {width: /^\(Other\)/.test(e.text) ? "0%" :
+                p(parseInt(e.text.substring(e.text.lastIndexOf(":") + 1))) + "%"},
+                s = e.text.split(":"),
+                l = s.pop().replace(/^[\s]*/, "").replace(/[\s]*$/, ""),
+                c = s.join(":"),
+                u = c + " (" + l + ")",
+                d = t ? t[n] : React.createElement("pre", null, u),
+                h = React.createElement("div", {className: "summary-view-tile-graph-bar"},
+                    React.createElement("div", {className: "summary-view-tile-graph-bar-bar", style: i}),
+                    React.createElement("div", {className: "summary-view-tile-graph-bar-text"}, u));
+            return h
+        })
+    }, renderHealthBar: function (e, t, n, a) {
+        var o = n && 0 !== n ? n / t * 100 : 0,
+            i = a && 0 !== a ? a / t * 100 : 0,
+            s = 100 - o - i,
+            l = {width: this.formatNumber(s) + "%"},
+            c = {width: this.formatNumber(o) + "%"},
+            u = {width: this.formatNumber(i) + "%"},
+            d = function (e, t) {
+                return function (n) {
+                    var r = n.nativeEvent.offsetX;
+                    r = 100 > r ? r + 10 : r - 100,
+                        $elem = $("#" + e).html(t).css("left", r + "px").addClass("show"),
+                        $(n.target).css("opacity", "0.5")
+                }
+            },
+            p = function (e) {
+                return function (t) {
+                    $elem = $("#" + e).removeClass("show"), $(t.target).css("opacity", "1")
+                }
+            },
+            m = [];
+        return m.push(React.createElement("td", {
+            className: "clean",
+            style: l,
+            key: this.props.idx,
+            onMouseEnter: d(e, "Clean: " + l.width),
+            onMouseLeave: p(e)
+        })), o > 0 && m.push(React.createElement("td", {
+            className: "nas",
+            style: c,
+            onMouseEnter: d(e, "NAs: " + c.width),
+            onMouseLeave: p(e)
+        })), i > 0 && m.push(React.createElement("td", {
+            className: "outlier",
+            style: u,
+            onMouseEnter: d(e, "Outlier: " + u.width),
+            onMouseLeave: p(e)
+        })), React.createElement("div", null,
+            React.createElement("table", null,
+                React.createElement("tbody", null,
+                    React.createElement("tr", null, m))),
+            React.createElement("div", {
+                className: "balloon",
+                id: e
+            }))
+    }, render: function () {
+        try {
+        var e = this.props.col,
+            t = this.props.stat;
+        if (!t)return null;
+        var n = (this.props.dt, this.props.dt.split(",").pop()),
+            a = this.props.nrow,
+            o = (this.formatNumber(this.props.nuniq), this.getNumberOfNAs(t)),
+            i = this.renderTop6Data(t), s = 0, l = 0;
+        t.forEach(function (e) {/^TRUE/.test(e) ? s = parseInt(e.split(":")[1]) : /^FALSE/.test(e) && (l = parseInt(e.split(":")[1]))});
+        var c = (s / a * 100).toFixed(2) + "%", u = (l / a * 100).toFixed(2) + "%",
+            d = (o / a * 100).toFixed(2) + "%",
+            p = this.renderHealthBar("summary-view-tile-" + this.props.idx, a, o, 0),
+            m = this,
+            h = React.createElement("div", {className: "summary-view-tile"},
+                React.createElement("div", {className: "summary-view-tile-header"},
+                    React.createElement("div", {className: "summary-view-tile-header-label"},
+                        React.createElement("span", {}, this.props.value),
+                        React.createElement("span", {})),
+                    React.createElement("div",
+                        {className: "summary-view-tile-header-data-type", title: this.props.dt},
+                        React.createElement("span", {}, this.props.dt),
+                        React.createElement("span", {}))),
+                React.createElement("div", {className: "summary-view-tile-graph"},
+                    React.createElement("div", {className: "summary-view-tile-graph-bar-area"}, i)),
+                React.createElement("div", {className: "summary-view-tile-health-bar"}, p),
+                React.createElement("div", {className: "summary-view-tile-stats"},
+                    React.createElement("table", null,
+                        React.createElement("tr", null,
+                            React.createElement("td", {className: 0 === o ? "" : "nas"},
+                            React.createElement("span", {className: "summary-view-tile-stats-label"}, "NAs"),
+                            React.createElement("span", {className: "summary-view-tile-stats-value"},
+                                this.formatNumber(o), " (", d, ")"))),
+                        React.createElement("tr", null,
+                            React.createElement("td", null,
+                                React.createElement("span", {className: "summary-view-tile-stats-label"}, "TRUE"),
+                                React.createElement("span", {className: "summary-view-tile-stats-value"},
+                                    this.formatNumber(s), " (", c, ")"))),
+                        React.createElement("tr", null,
+                            React.createElement("td", null,
+                                React.createElement("span", {className: "summary-view-tile-stats-label"}, "FALSE"),
+                                React.createElement("span", {className: "summary-view-tile-stats-value"},
+                                    this.formatNumber(l), " (", u, ")"))))));
+                    return h
+                } catch (f) {
+                    return console.error("Failed to render summary for column: " + e, f) //, this.renderErrorTile()
+                }
+            }
+        });
