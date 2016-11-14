@@ -15,7 +15,7 @@ The `cliffnotes` library allows you to get a quick overview of you an `R` datafr
 library(cliffnotes)
 library(nycflights13)
 
-cliffnotes(nycflights13::flights, width = '100%', height = 400)
+cliffnotes(nycflights13::flights)
 ```
 
 ## Thanks

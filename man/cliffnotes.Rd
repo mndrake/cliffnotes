@@ -4,7 +4,7 @@
 \alias{cliffnotes}
 \title{cliffnotes}
 \usage{
-cliffnotes(df, width = NULL, height = NULL)
+cliffnotes(tbl, ...)
 }
 \description{
 data summaries and analysis

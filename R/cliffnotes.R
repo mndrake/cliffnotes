@@ -5,7 +5,12 @@
 #' @import htmlwidgets
 #'
 #' @export
-cliffnotes <- function(df, width = NULL, height = NULL) {
+cliffnotes <- function(tbl, ...) {
+  UseMethod("cliffnotes", tbl)
+}
+
+#' @export
+cliffnotes.default <- function(df, width = NULL, height = NULL) {
   params <- list(data = get_data_frame_summary(df))
   attr(params, 'TOJSON_ARGS') <- list(auto_unbox = FALSE, keep_vec_names = FALSE)
 
@@ -15,7 +20,12 @@ cliffnotes <- function(df, width = NULL, height = NULL) {
     x = params,
     width = width,
     height = height,
-    package = 'cliffnotes'
+    package = 'cliffnotes',
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      knitr.figure = FALSE,
+      browser.fill = TRUE,
+      knitr.defaultHeight = 500
+    )
   )
 }
 
