@@ -13,7 +13,7 @@ NULL
 
 # Return dataframe summary info
 # @param x dataframe
-get_data_frame_summary = function(x) {
+get_data_frame_summary <- function(x) {
   # calculate uniq length for each column in advance because
   # we use those numbers multiple times later and it is a costly operation.
   .uniqlen <- sapply(x, function(y) {
@@ -191,15 +191,9 @@ get_data_frame_summary = function(x) {
 # Returns appropriate date format string
 get_date_format_string <- function(mindate, maxdate) {
   timeinterval <- interval(mindate, maxdate)
-  str <- "%Y"
-  if (time_length(timeinterval, "month") < 12) {
-    str <- "%Y-%m"
-    if (time_length(timeinterval, "day") < 31) {
-      str <- "%Y-%m-%d"
-      if (time_length(timeinterval, "hour") < 48) {
-        str <- '%H:%M:%S'
-      }
-    }
+  str <- "%Y-%m-%d"
+  if (time_length(timeinterval, "hour") < 48) {
+      str <- '%H:%M:%S'
   }
   return(str);
 }
