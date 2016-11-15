@@ -21,6 +21,9 @@ cliffnotes.default <- function(df, width = NULL, height = NULL) {
     width = width,
     height = height,
     package = 'cliffnotes',
+    dependencies = list(rmarkdown::html_dependency_jquery(),
+                        rmarkdown::html_dependency_bootstrap("default"),
+                        rmarkdown::html_dependency_font_awesome()),
     sizingPolicy = htmlwidgets::sizingPolicy(
       knitr.figure = FALSE,
       browser.fill = TRUE,
