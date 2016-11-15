@@ -1,9 +1,13 @@
+#' @import htmlwidgets
+#' @importFrom lubridate is.difftime is.duration is.interval is.Date is.POSIXt is.POSIXct is.POSIXlt interval time_length
+#' @importFrom stringr str_length
+#' @importFrom rmarkdown html_dependency_jquery html_dependency_bootstrap html_dependency_font_awesome
+NULL
+
+
 #' cliffnotes
 #'
 #' data summaries and analysis
-#'
-#' @import htmlwidgets
-#'
 #' @export
 cliffnotes <- function(tbl, ...) {
   UseMethod("cliffnotes", tbl)
@@ -21,13 +25,12 @@ cliffnotes.default <- function(df, width = NULL, height = NULL) {
     width = width,
     height = height,
     package = 'cliffnotes',
-    dependencies = list(rmarkdown::html_dependency_jquery(),
-                        rmarkdown::html_dependency_bootstrap("default"),
-                        rmarkdown::html_dependency_font_awesome()),
-    sizingPolicy = htmlwidgets::sizingPolicy(
-      knitr.figure = FALSE,
-      browser.fill = TRUE,
-      knitr.defaultHeight = 500
+    dependencies = list(html_dependency_jquery(),
+                        html_dependency_bootstrap("default"),
+                        html_dependency_font_awesome()),
+    sizingPolicy = sizingPolicy(knitr.figure = FALSE,
+                                browser.fill = TRUE,
+                                knitr.defaultHeight = 500
     )
   )
 }
