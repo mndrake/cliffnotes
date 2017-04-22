@@ -39,7 +39,7 @@ var CliffNotes = (function () {
                             minlen: d[9][n][0],
                             maxlen: d[8][n][0]};
                 dt == "integer" || dt == "numeric" ? P.push(React.createElement(NumericTile, dict)
-                ) : dt == "character" ? P.push(React.createElement(FactorTile, dict)
+                ) : dt == "character" || dt == "factor" ? P.push(React.createElement(FactorTile, dict)
                 ) : dt == "POSIXct" ? P.push(React.createElement(DateTile, dict)
                 ) : dt == "logical" ? P.push(React.createElement(LogicalTile, dict)
                 ) : ({});
