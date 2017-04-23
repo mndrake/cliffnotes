@@ -307,13 +307,15 @@ var CliffNotes = (function () {
             var n = this.refs.histarea;
             if (n) {
                 var r = this.props.hist;
-                this.renderHistogram(n, n.clientWidth, n.clientHeight, {
-                    breaks: r[0],
-                    counts: r[1],
-                    mids: r[2],
-                    min: e,
-                    max: t
-                }, null, "hist-" + this.props.idx);
+                if (r.length > 1) {
+                    this.renderHistogram(n, n.clientWidth, n.clientHeight, {
+                        breaks: r[0],
+                        counts: r[1],
+                        mids: r[2],
+                        min: e,
+                        max: t
+                    }, null, "hist-" + this.props.idx);
+                }
             }
         },
         componentDidMount: function () {
