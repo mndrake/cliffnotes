@@ -304,7 +304,7 @@ var CliffNotes = (function () {
     var NumericTile = React.createClass({
         mixins: [TileMixin],
         _componentDidMount: function (e, t) {
-            var n = document.getElementById("hist-area-" + this.props.col);
+            var n = this.refs.histarea;
             if (n) {
                 var r = this.props.hist;
                 this.renderHistogram(n, n.clientWidth, n.clientHeight, {
@@ -349,7 +349,8 @@ var CliffNotes = (function () {
                     React.createElement("div", {className: "summary-view-tile-graph", style: {height: 180}},
                         React.createElement("div", {
                             className: "summary-view-tile-hist-area",
-                            id: "hist-area-" + colName
+                            id: "hist-area-" + colName,
+                            ref: "histarea"
                         })),
                     React.createElement("div", {className: "summary-view-tile-health-bar"}, d),
                     React.createElement("div", {className: "summary-view-tile-stats"},
@@ -395,7 +396,7 @@ var CliffNotes = (function () {
         mixins: [TileMixin],
         componentDidMount: function () {
             console.log('mount datetile')
-            var e = document.getElementById("hist-area-" + this.props.col);
+            var e = this.refs.histarea;
             if (e) {
                 var t = (this.props.col, this.props.stat),
                     n = this.props.hist,
@@ -416,7 +417,7 @@ var CliffNotes = (function () {
         },
         componentDidUpdate: function () {
             console.log('update datetile');
-            var e = document.getElementById("hist-area-" + this.props.col);
+            var e = this.refs.histarea;
             this._emptyHistogram(e), this.componentDidMount()
         },
         _emptyHistogram: function (e) {
@@ -502,7 +503,8 @@ var CliffNotes = (function () {
                         React.createElement("div", {className: "summary-view-tile-graph", style: {height: 180}},
                             React.createElement("div", {
                                 className: "summary-view-tile-hist-area",
-                                id: "hist-area-" + this.props.col
+                                id: "hist-area-" + this.props.col,
+                                ref: "histarea"
                             })),
                         React.createElement("div", {className: "summary-view-tile-health-bar"}, p),
                         React.createElement("div", {className: "summary-view-tile-stats"},
