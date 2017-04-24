@@ -10,7 +10,7 @@ var CliffNotes = (function () {
                 body = d.getElementsByTagName('body')[0],
                 width = el.clientWidth || w.innerWidth || documentElement.clientWidth || body.clientWidth,
                 height = el.clientHeight || w.innerHeight || documentElement.clientHeight || body.clientHeight;
-            d3.select("#data-frame-summary").style("height", height + 'px').style("width", width + 'px');
+            d3.select(el).select("#data-frame-summary").style("height", height + 'px').style("width", width + 'px');
         },
         componentWillMount: function () {
             this.updateDimensions();
